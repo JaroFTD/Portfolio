@@ -303,6 +303,10 @@ function intitForms(forms) {
       function formRemoveError(input) { 
          input.parentElement.classList.remove('_error');
          input.classList.remove('_error');
+         let p = input.parentElement.querySelector('.message');
+         if (p) {
+            p.remove();
+         }
       }
       // Функия теста email
       function emailTest(input) {

@@ -381,10 +381,14 @@ body._lock {
   border: 0.0625rem solid red;
   border-radius: 0.25rem;
   padding: 0.9375rem 1.25rem;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: background-color 0.3s ease 0s, color 0.3s ease 0s, opacity 0.8s ease 1.4s, -webkit-box-shadow 0.3s ease 0s, -webkit-transform 0.8s ease 1.4s;
+  transition: background-color 0.3s ease 0s, color 0.3s ease 0s, opacity 0.8s ease 1.4s, -webkit-box-shadow 0.3s ease 0s, -webkit-transform 0.8s ease 1.4s;
+  transition: background-color 0.3s ease 0s, color 0.3s ease 0s, box-shadow 0.3s ease 0s, transform 0.8s ease 1.4s, opacity 0.8s ease 1.4s;
+  transition: background-color 0.3s ease 0s, color 0.3s ease 0s, box-shadow 0.3s ease 0s, transform 0.8s ease 1.4s, opacity 0.8s ease 1.4s, -webkit-box-shadow 0.3s ease 0s, -webkit-transform 0.8s ease 1.4s;
   -webkit-box-shadow: -2px 4px 0px 0px rgb(255, 0, 0);
           box-shadow: -2px 4px 0px 0px rgb(255, 0, 0);
+  background-color: #fff;
+  color: #000;
 }
 @media (any-hover: hover) {
   .btn:hover {
@@ -758,6 +762,8 @@ body._lock {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: 50% 65%;
+     object-position: 50% 65%;
 }
 
 @supports (padding-top: clamp( 1.875rem , 0.4608585859rem  +  7.0707070707vw , 6.25rem )) {
@@ -1758,6 +1764,7 @@ body._lock {
   margin-bottom: 0.5em;
 }
 .contact__form {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1766,6 +1773,26 @@ body._lock {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1.5rem;
+}
+.contact__form::after {
+  content: "";
+  position: absolute;
+  width: 102%;
+  height: 102%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: rgba(51, 51, 51, 0.9) url("../img/gif/loading.gif") center/50px no-repeat;
+  -webkit-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  opacity: 0;
+  visibility: hidden;
+}
+.contact__form._sending::after {
+  opacity: 1;
+  visibility: visible;
 }
 .contact__form ._error .message {
   position: absolute;
@@ -1802,6 +1829,4 @@ body._lock {
   -webkit-transform: translateY(30px);
       -ms-transform: translateY(30px);
           transform: translateY(30px);
-  -webkit-transition: all 0.8s ease 1.4s;
-  transition: all 0.8s ease 1.4s;
 }
